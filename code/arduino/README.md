@@ -10,3 +10,5 @@ Pinout -
     - tilt  ------------> pin A6
     - btn ------------> pin 3
     
+<img src="https://raw.githubusercontent.com/barak-t/nerf_turret/main/img/nerf_turret_bb.png" alt="img" width="500"/>
+<img src="https://raw.githubusercontent.com/barak-t/nerf_turret/main/img/nerf_turret_schem.png" alt="img" width="700"/>
