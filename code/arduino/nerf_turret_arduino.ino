@@ -19,7 +19,6 @@
 #define BUFFER_INDEX_MOTOR 2
 #define BUFFER_INDEX_SHOOT 3
 
-#define MOTOR_MAX_SPEED 150
 
 //----- Declare servos and variables
 Servo recoil_servo;
@@ -30,12 +29,12 @@ const byte pan_limit_min = 0;
 const byte pan_limit_max = 180;
 const byte tilt_limit_min = 90;
 const byte tilt_limit_max = 180;
-const byte recoil_rest = 180;    // Angle of the servo when at rest
+const byte recoil_rest = 180;     // Angle of the servo when at rest
 const byte recoil_pushed = 90;  // Angle the servo need to reach to push the dart
 
 byte pan = 90; // start pan value
-byte tilt = tilt_limit_max;// start tilt value
-byte last_serial_pan = 0;  // last pan and tilt values got from serial con
+byte tilt = tilt_limit_max; // start tilt value
+byte last_serial_pan = 0; // last pan and tilt values got from serial con
 byte last_serial_tilt = 0;
 bool btn_pushed = false;
 
@@ -72,7 +71,7 @@ void setup()
   if(JOYSTICK){
     pinMode(JOYSTICK_PIN_BTN, INPUT);
     digitalWrite(JOYSTICK_PIN_BTN, HIGH); 
-    pinMode(2, OUTPUT);
+    pinMode(2, OUTPUT); // config free pin for use as HIGH for wiring the joystick 5V.
     digitalWrite(2, HIGH);
   }
  
@@ -95,7 +94,6 @@ void setup()
   digitalWrite(13, LOW);
   delay(1000);
   digitalWrite(13, HIGH);
-  // tilt_servo.write(105); // ?
 
   Serial.begin(SERIAL_BAUDRATE);  // begin serial communication
 }
@@ -107,7 +105,7 @@ void setup()
 void loop()
 {
   read_data_from_serial();
-  // set_motor();
+  
   if (data_received || JOYSTICK) {
     update_values();
     move_servo();
@@ -115,7 +113,6 @@ void loop()
     set_motor();
   }
   fire();
-  // delay(5);
 }
 
 
@@ -162,7 +159,6 @@ void update_values(){
 
   if(JOYSTICK){
     btn_pushed = !digitalRead(JOYSTICK_PIN_BTN);
-    // Serial.println(btn_pushed);
     int pan_read = analogRead(JOYSTICK_PIN_PAN);
     int tilt_read = analogRead(JOYSTICK_PIN_TILT);
     #ifdef DEBUG
@@ -206,8 +202,8 @@ void update_values(){
     last_serial_tilt = inputBuffer[BUFFER_INDEX_TILT];
     pan = last_serial_pan;
     tilt = last_serial_tilt;
-    pan = map(pan, 0, 180, pan_limit_max, pan_limit_min);//convert inputbuffer value to servo position value
-    tilt = map(tilt, 0 , 180, tilt_limit_min, tilt_limit_max); //convert inputbuffer value to servo position value
+    pan = map(pan, 0, 180, pan_limit_max, pan_limit_min); // convert inputbuffer value to servo position value
+    tilt = map(tilt, 0 , 180, tilt_limit_min, tilt_limit_max);     // convert inputbuffer value to servo position value
   }
 }
 
@@ -246,19 +242,12 @@ void set_motor() {
 
   if (!motors_on && (inputBuffer[BUFFER_INDEX_MOTOR] == 1 || btn_pushed)) {
 
-    // Slow start
-    // for(int i=100; i<MOTOR_MAX_SPEED; i++){
-    //   analogWrite(MOTOR_PIN, i);
-    //   delay(5);
-    // }
-
-    digitalWrite(MOTOR_PIN, HIGH);              //turn motor ON
-    // analogWrite(MOTOR_PIN, MOTOR_MAX_SPEED);
+    digitalWrite(MOTOR_PIN, HIGH); // turn motor ON
     motor_started_time = millis();
     motors_on = true;
   }
   else if (!is_firing && motors_on && (inputBuffer[BUFFER_INDEX_MOTOR] == 0 && !btn_pushed)) {                        //if screen not touched
-    digitalWrite(MOTOR_PIN, LOW);               //turn motor OFF
+    digitalWrite(MOTOR_PIN, LOW); // turn motor OFF
     motors_on = false;
   }
 }
