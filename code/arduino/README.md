@@ -1,5 +1,5 @@
 ## **NERF TURRET**
-###Arduino
+### Arduino
 Pinout -
 - pan servo ---------> pin 10
 - tilt servo  ---------> pin 9
