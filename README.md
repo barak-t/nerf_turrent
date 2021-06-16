@@ -18,14 +18,17 @@ Projects files :
 #### Components -
 - 1x  Arduino nano
 - 1x  USB cable
-- 3x  9g Servo motor 
-- 2x  DC Motor (15K - 30K RPM)
 - 1x  10K Resistor
 - 1x  FR207 Diode
-- 10x M2x10 Self tapping screws
-- 3x  M5x20 Screws
-- 10x Nerf Darts
 - 1x  Thumb Joystick
+- 2x  DC Motor (15K - 30K RPM)
+- 3x  9g Servo motor 
+- 3x  M5x20 Screws
+- 10x M2x10 Self tapping screws
+- 10x Nerf Darts
+- 5x  F-F Jumper wire
+- 2x  F-M Jumper wire
+- 1x  Paper clip
 
 
 
