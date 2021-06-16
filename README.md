@@ -11,9 +11,7 @@ Projects files :
 	- **NERF_Turret.stp** - step file for using any cad software (I used Fusion 360)
 
 
-![Image of NERF Turret](https://raw.githubusercontent.com/barak-t/nerf_turret/main/img/img.png =x100)
-
-
+<img src="https://raw.githubusercontent.com/barak-t/nerf_turret/main/img/img.png" alt="img" width="500"/>
 
 
 
